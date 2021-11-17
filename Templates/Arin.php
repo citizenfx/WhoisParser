@@ -110,7 +110,7 @@ class Arin extends Regex
             }
         }
         
-        if (isset($Result->referral_server) && $Result->referral_server != '' && $Result->referral_server != 'rwhois://rwhois.psychz.net:4321' && $Result->referral_server != 'rwhois://rwhois.shawcable.net:4321' && $Result->referral_server != 'rwhois://rwhois.perfectip.net:4321' && $Result->referral_server != 'rwhois://rwhois.xmission.com:4321') {
+        if (isset($Result->referral_server) && $Result->referral_server != '' && $Result->referral_server != 'rwhois://rwhois.psychz.net:4321' && $Result->referral_server != 'rwhois://rwhois.shawcable.net:4321' && $Result->referral_server != 'rwhois://rwhois.perfectip.net:4321' && $Result->referral_server != 'rwhois://rwhois.xmission.com:4321' && $Result->referral_server != 'rwhois://rwhois.googlefiber.net:8987') {
             // Save a copy of the valid result before running the referral server
             //  This is used in the event that the referral server fails
             $prereferralResult = clone $Result;

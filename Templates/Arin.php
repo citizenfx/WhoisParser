@@ -87,6 +87,21 @@ class Arin extends Regex
             6 => array('/^ReferralServer:(?>[\x20\t]*)(.+)$/im' => 'referral_server'));
 
     /**
+	 * List of referral servers to ignore.
+	 *
+	 * @var array
+	 * @access protected
+	 */
+    private $ignoredReferralServers = array(
+        'rwhois://rwhois.psychz.net:4321',
+        'rwhois://rwhois.shawcable.net:4321',
+        'rwhois://rwhois.perfectip.net:4321',
+        'rwhois://rwhois.xmission.com:4321',
+        'rwhois://rwhois.googlefiber.net:8987',
+        'rwhois://rwhois.teksavvy.com:4321',
+    );
+
+    /**
      * After parsing do something
      *
      * If ARNIC says the organization is different change the whois server and
@@ -110,7 +125,7 @@ class Arin extends Regex
             }
         }
         
-        if (isset($Result->referral_server) && $Result->referral_server != '' && $Result->referral_server != 'rwhois://rwhois.psychz.net:4321' && $Result->referral_server != 'rwhois://rwhois.shawcable.net:4321' && $Result->referral_server != 'rwhois://rwhois.perfectip.net:4321' && $Result->referral_server != 'rwhois://rwhois.xmission.com:4321' && $Result->referral_server != 'rwhois://rwhois.googlefiber.net:8987') {
+        if (isset($Result->referral_server) && $Result->referral_server != '' && !in_array($Result->referral_server, $this->ignoredReferralServers, true)) {
             // Save a copy of the valid result before running the referral server
             //  This is used in the event that the referral server fails
             $prereferralResult = clone $Result;

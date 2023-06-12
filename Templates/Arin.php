@@ -90,7 +90,7 @@ class Arin extends Regex
 	 * List of referral servers to ignore.
 	 *
 	 * @var array
-	 * @access protected
+	 * @access private
 	 */
     private $ignoredReferralServers = array(
         'rwhois://rwhois.psychz.net:4321',
